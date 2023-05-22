@@ -1,0 +1,25 @@
+name: Clone Repositories
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  clone-repos:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.x
+
+      - name: Install dependencies
+        run: pip3 install gitpython
+
+      - name: Clone repositories
+        run: |
+          python3 clone_repo.py
